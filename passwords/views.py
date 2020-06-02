@@ -66,9 +66,11 @@ def delete(request):
         if form.is_valid():
             name = form.cleaned_data["delaccname"]
             delpass = Passwords.objects.filter(account__icontains = name)
-            if delpass in request.user.passwords.all():
-                delpass.delete()
-                return HttpResponseRedirect('/home')
+            for pas in delpass:
+                if pas in request.user.passwords.all():
+                    pas.delete()
+                    return HttpResponseRedirect('/home')
+
 
 
     else:
@@ -77,10 +79,23 @@ def delete(request):
     return render(request, 'passwords/del_pass.html', {'form': form})
 
 @login_required
-def modify(request):
+def change(request):
+    def gene(length=12, chars = string.ascii_letters + string.digits + "!@#$%&"):
+        return ''.join(random.choice(chars) for _ in range(length))
     if request.method == 'POST':
         form = ModifyPassword(request.POST)
-
         if form.is_valid():
             name = form.cleaned_data["modifaccname"]
-            password =
+            length = form.cleaned_data["new_length"]
+            accounts = Passwords.objects.filter(account__icontains=name)
+            for account in accounts:
+                if account in request.user.passwords.all():
+                    new_password = gene(length)
+                    account.password = new_password
+                    account.save()
+                    return HttpResponseRedirect('/home')
+
+    else:
+        form = ModifyPassword()
+
+    return render(request, 'passwords/modify.html', {'form':form})
