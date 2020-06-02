@@ -1,0 +1,14 @@
+{% extends 'passwords/base.html' %}
+{% block title %}
+Change
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="mt-2">Change A Password </h1>
+<hr class="mt-0 mb-4">
+<form method="post" action="/change/" class="form-group">
+	{% csrf_token %}
+	{{form | crispy}}
+	<button type="submit" class="btn btn-success">Change</button>
+</form>
+{% endblock %}
