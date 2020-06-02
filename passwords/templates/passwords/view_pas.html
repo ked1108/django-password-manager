@@ -1,0 +1,25 @@
+{% extends "passwords/base.html" %}
+{% block title %}
+View Users
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="mt-2">Search</h1>
+<hr class="mt-0 mb-4">
+<form action='/search', method="GET" value="{{request.GET.q}}" >
+	{{form | crispy}}
+	<input type="submit" class="btn btn-success" value="Search"></input>
+</form>
+{% if results %}
+<h1 class="mt-2">Results</h1>
+<hr class="mt-0 mb-4">
+{% for result in results %}
+{% if result in user.passwords.all %}
+<p>{{result.account}}, {{result.password}}</p>
+<br><br>
+{% endif %}
+{% endfor %}
+{% else %}
+<p>No Results Found</p>
+{% endif %}
+{% endblock %}

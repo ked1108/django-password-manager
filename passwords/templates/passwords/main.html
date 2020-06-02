@@ -1,0 +1,16 @@
+{% extends 'passwords/base.html' %}
+
+{% block title %} Passwords {% endblock %}
+
+{% block content %}
+
+
+<h1 class="mt-2">Passwords</h1>
+<hr class="mt-0 mb-4">
+{% for p in user.passwords.all%}
+<p>{{p.account}}</p>
+<p>{{p.password}}</p>
+<br><br>
+{% endfor %}
+
+{% endblock %}

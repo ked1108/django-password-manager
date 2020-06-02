@@ -1,0 +1,14 @@
+{% extends 'passwords/base.html' %}
+{% block title %}
+Delete
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="mt-2">Delte A Password </h1>
+<hr class="mt-0 mb-4">
+<form method="post" action="/delete/" class="form-group">
+	{% csrf_token %}
+	{{form | crispy}}
+	<button type="submit" class="btn btn-success">Delete</button>
+</form>
+{% endblock %}

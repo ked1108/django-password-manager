@@ -1,0 +1,21 @@
+{% extends 'passwords/base.html' %}
+{% block title %}
+Welcome
+{% endblock %}
+
+{% block content %}
+<h1 class="mt-2">Welcome {{user}}!</h1>
+<hr class="mt-0 mb-4">
+<div class="list-group">
+	 <a href="/create" class="list-group-item list-group-item-action list-group-item-secondary">Create</a>
+	 <a href="/delete" class="list-group-item list-group-item-action list-group-item-secondary">Delete</a>
+	 <a href="/search" class="list-group-item list-group-item-action list-group-item-secondary">Search</a>
+	 <a href="/views" class="list-group-item list-group-item-action list-group-item-secondary">View All</a>
+
+</div>
+<br>
+<a class='btn btn-success' href='/logout'>Logout</a>
+<br>
+<br>
+<hr class="mt-0 mb-4">
+{% endblock %}
