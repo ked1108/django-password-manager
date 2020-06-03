@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'fw23+z4p865v8+!f(5&$^n5pqza+o6kozl3517bazzimss+c%i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["djangopasswordmanager.pythonanywhere.com"]
 
 CRISPY_TEMPLATE_PACK="bootstrap4"
 LOGIN_URL = "/login"
@@ -125,3 +125,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
